@@ -9,14 +9,14 @@ class ShippingController extends Controller
 {
     public function getShippingCost(Request $request)
     {
-        $apiKey = 'sk-dkXs22HLg36mpUUpro0NaUq9LHIQpQ5ZVl868jpuzBKZbYbokg'; 
+        $apiKey = '...';
 
         $response = Http::withHeaders([
             'x-api-co-id' => $apiKey
         ])->get('https://use.api.co.id/expedition/shipping-cost', [
-            'origin_village_code' => '3172051003', // GANTI dengan kode desa asal tokomu!
+            'origin_village_code' => '3172051003',
             'destination_village_code' => $request->destination_village_code,
-            'weight' => 1 // Berat paket dalam kilogram
+            'weight' => 1
         ]);
 
         return $response->json();
