@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api; // Sesuaikan dengan lokasi file Anda
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,10 +12,9 @@ class WilayahController extends Controller
     {
         $tipe = $request->tipe;
         $code = $request->id;
-        
-        // ⚠️ PENTING: Anda WAJIB mengganti tulisan di bawah ini dengan API Key asli dari dashboard api.co.id Anda!
-        $apiKey = 'sk-dkXs22HLg36mpUUpro0NaUq9LHIQpQ5ZVl868jpuzBKZbYbokg'; 
-        
+
+        $apiKey = 'sk-dkXs22HLg36mpUUpro0NaUq9LHIQpQ5ZVl868jpuzBKZbYbokg';
+
         $baseUrl = 'https://use.api.co.id/regional/indonesia'; //
         $url = '';
 
@@ -30,12 +29,10 @@ class WilayahController extends Controller
             'x-api-co-id' => $apiKey //[cite: 1]
         ])->get($url);
 
-        // Jika berhasil, kirim data wilayah
         if ($response->successful()) {
             return $response->json('data');
         }
 
-        // Jika gagal (misal karena API Key salah), kirim pesan error asli ke frontend
         return response()->json([
             'error' => 'Gagal akses API. Pastikan API Key benar.',
             'detail' => $response->json('message'),
