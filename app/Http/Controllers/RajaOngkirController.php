@@ -24,7 +24,7 @@ class RajaOngkirController extends Controller
                 'pesan' => 'Gagal mencari lokasi tujuan',
                 'detail' => $searchData
             ], 400);
-        }
+         }
 
         $destination_id = $searchData['data'][0]['id'];
 
@@ -32,12 +32,12 @@ class RajaOngkirController extends Controller
             ->asForm()
             ->post('https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost', [
                 'origin' => $destination_id,
-                'destination' => $destination_id,
+                'destination' =>  $destination_id,
                 'weight' => 1000,
                 'courier' => 'jne:sicepat:jnt'
             ]);
 
-        $calcData = $calc->json();
+        $calcData  = $calc->json();
 
         if (!$calc->successful() || empty($calcData['data'])) {
             return response()->json([
@@ -47,7 +47,7 @@ class RajaOngkirController extends Controller
         }
 
         $formattedOptions = [];
-        foreach ($calcData['data'] as $option) {
+         foreach ($calcData['data'] as $option) {
             $kurir = strtoupper($option['code'] ?? 'KURIR');
             $layanan = strtoupper($option['service'] ?? 'REG');
 

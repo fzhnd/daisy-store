@@ -15,10 +15,10 @@ class ShippingController extends Controller
             'x-api-co-id' => $apiKey
         ])->get('https://use.api.co.id/expedition/shipping-cost', [
             'origin_village_code' => '3172051003',
-            'destination_village_code' => $request->destination_village_code,
+            'de stination_village_code' => $request->destination_village_code,
             'weight' => 1
         ]);
 
-        return $response->json();
+         return $response->json();
     }
 }

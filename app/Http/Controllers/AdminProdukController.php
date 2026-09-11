@@ -10,7 +10,7 @@ class AdminProdukController extends Controller
     public function index()
     {
         $produks = Produk::all();
-        return view('dashboard', compact('produks')); 
+        return view('dashboard', compact('produks'));
     }
 
     public function create()
@@ -25,10 +25,10 @@ class AdminProdukController extends Controller
             'kategori_produk' => 'required|string',
             'harga' => 'required|integer',
             'stok' => 'required|integer',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048', // maksimal 2MB
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $nama_gambar = time() . '.' . $request->gambar->extension();  
+        $nama_gambar = time() . '.' . $request->gambar->extension();
         $request->gambar->move(public_path('images/produk'), $nama_gambar);
 
         Produk::create([
@@ -57,7 +57,7 @@ class AdminProdukController extends Controller
             'kategori_produk' => 'required|string',
             'harga' => 'required|integer',
             'stok' => 'required|integer',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Boleh kosong jika tidak ganti gambar
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $data = [
@@ -68,7 +68,7 @@ class AdminProdukController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $nama_gambar = time() . '.' . $request->gambar->extension();  
+            $nama_gambar = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('images/produk'), $nama_gambar);
             $data['gambar'] = $nama_gambar;
         }

@@ -9,7 +9,7 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produkBaru = Produk::latest()->take(10)->get(); 
+        $produkBaru = Produk::latest()->take(10)->get();
         $pakaian = Produk::where('kategori_produk', 'Pakaian')->take(10)->get();
         $aksesoris = Produk::where('kategori_produk', 'Aksesoris')->take(10)->get();
         $alatTulis = Produk::where('kategori_produk', 'Alat Tulis')->take(10)->get();
@@ -20,7 +20,7 @@ class ProdukController extends Controller
     public function kategori($kategori)
     {
         $produks = Produk::where('kategori_produk', $kategori)->get();
-        
+
         return view('produk.kategori', compact('produks', 'kategori'));
     }
 
@@ -35,7 +35,7 @@ class ProdukController extends Controller
     public function favorit()
     {
         $produks = Produk::all();
-        
+
         return view('produk.favorit', compact('produks'));
     }
 
@@ -46,9 +46,9 @@ class ProdukController extends Controller
 
     public function search(\Illuminate\Http\Request $request)
     {
-        $kata_kunci = $request->input('q');    
+        $kata_kunci = $request->input('q');
         $produks = Produk::where('nama_produk', 'like', "%{$kata_kunci}%")->get();
-        
+
         return view('produk.search', compact('produks', 'kata_kunci'));
     }
 }
